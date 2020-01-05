@@ -97,3 +97,32 @@ func lcsubseq(a string, b string) string {
 	}
 	return string(res)
 }
+
+func editDistance(a string, b string) int {
+	N, M := len(a), len(b)
+	dp := make([][]int, N+1)
+	for i := 0; i <= N; i++ {
+		dp[i] = make([]int, M+1)
+		for j := 0; j <= M; j++ {
+			if i == 0 {
+				dp[i][j] = j
+				continue
+			} else if j == 0 {
+				dp[i][j] = i
+				continue
+			}
+			if a[i-1] == b[j-1] {
+				dp[i][j] = dp[i-1][j-1]
+			} else {
+				dp[i][j] = dp[i-1][j-1] + 1
+			}
+			if dp[i-1][j]+1 < dp[i][j] {
+				dp[i][j] = dp[i-1][j] + 1
+			}
+			if dp[i][j-1]+1 < dp[i][j] {
+				dp[i][j] = dp[i][j-1] + 1
+			}
+		}
+	}
+	return dp[N][M]
+}
