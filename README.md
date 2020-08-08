@@ -1,6 +1,6 @@
 # leetcode-go
 
-Every single leetcode problem.
+Every single leetcode problem. (WIP)
 
 Problems are done in go if possible, otherwise python. SQL problems are done in mysql.
 
